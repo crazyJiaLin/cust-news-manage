@@ -1,0 +1,40 @@
+.add-news-info-wrapper{
+    height: 180px;
+    overflow: hidden;
+}
+.news-icon-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    border-radius: 5px;
+    border: 1px dashed #ccc;
+    background: #fff;
+    cursor: pointer;
+    overflow: hidden;
+}
+.news-icon-wrapper span{
+    font-size: 14px;
+    color: #666;
+}
+.news-icon-wrapper img{
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+}
+#image-choose-input{
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+.edior-label{
+    text-align: left;
+    padding-bottom: 15px;
+}
+
+.finish-wrapper{
+    margin-top: 20px;
+    text-align: right;
+    padding:0 50px 20px;
+}
