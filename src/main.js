@@ -37,6 +37,7 @@ Vue.config.productionTip = false;
 // import './assets/wangeidtor/release/wangEditor.min.js'
 
 window.fileReqUrl = 'http://www.sharismspace.com/file_server-0.0.1-SNAPSHOT';
+window.custReqUrl = 'http://118.25.48.91:8080/cust_news-0.0.1-SNAPSHOT';
 
 /* eslint-disable no-new */
 new Vue({

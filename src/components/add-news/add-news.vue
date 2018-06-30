@@ -11,7 +11,7 @@
                     <el-col :span="6" :offset="3">
                         <el-form-item label="新闻标题：" label-width="90px">
                             <el-select v-model="newsInfo.sort" placeholder="请选择">
-                                <!-- <el-option v-for="(item, key) in newsSortList" :label="item.label" :value="item.value"></el-option> -->
+                                <el-option v-for="(item, key) in newsSortList" :label="item.label" :value="item.value"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
@@ -67,8 +67,37 @@
         methods : {
             publishNews(){
                 let that = this;
-                let content =  that.editor.txt.html();
-                let base = that.editor.txt.text();
+                var map = {};
+                // that.confirm
+                //标题
+                map['title']= that.newsInfo.title;
+                //标题图片
+                map['titleIcon']= that.newsInfo.iconPath;
+                //新闻基本信息
+                map['base']= that.editor.txt.text();
+                //新闻内容
+                map['news']= that.editor.txt.html();
+                //新闻分类
+                map['classify']= that.newsInfo.sort;	
+                //作者
+                map['author']= "陈佳霖";
+                //作者头像
+                map['authorIcon']="http://118.25.48.91:8000/group2/M00/00/01/CpqBPFrNY8eARTXnAAFO_mKpm5I052.jpg";
+
+                console.log(map);
+                var formData=new FormData();
+                formData.append("newsMap",JSON.stringify(map));
+
+                that.$axios.post(
+                    window.custReqUrl + '/news/insert',
+                    formData
+                ).then(function(res){
+                    console.log(res.data);
+                    let data = res.data;
+                }).catch(function(err){
+
+                });
+
             },
             chooseImage($event){
                 let fileNode = document.getElementById('image-choose-input');
@@ -117,7 +146,16 @@
         },
         mounted() {
             this.editor = new E('#editor');
-            this.editor.customConfig.uploadImgServer = 'http://www.sharismspace.com/file_server-0.0.1-SNAPSHOT/file/upload/';
+            this.editor.customConfig.uploadImgServer = 'http://www.sharismspace.com/file_server-0.0.1-SNAPSHOT/file/wangEditor2';
+            this.editor.customConfig.debug = true;
+            // this.editor.customConfig.uploadImgHooks = {
+            //     before: function (xhr, editor, files) {
+            //         console.log(xhr);
+            //         console.log(files);
+                  
+            //     },
+            // }
+            
             this.editor.create();
         },
         destroyed(){
